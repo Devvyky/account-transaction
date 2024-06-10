@@ -24,6 +24,6 @@ type Transaction struct {
 	OperationTypeID int64 `json:"operation_type_id"`
 	AccountID       int64 `json:"account_id"`
 	// can be negative or positive
-	Amount    int64     `json:"amount"`
+	Amount    float64   `json:"amount"`
 	EventDate time.Time `json:"event_date"`
 }

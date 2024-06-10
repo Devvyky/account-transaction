@@ -20,9 +20,9 @@ INSERT INTO transactions (
 `
 
 type CreateTransactionParams struct {
-	AccountID       int64 `json:"account_id"`
-	OperationTypeID int64 `json:"operation_type_id"`
-	Amount          int64 `json:"amount"`
+	AccountID       int64   `json:"account_id"`
+	OperationTypeID int64   `json:"operation_type_id"`
+	Amount          float64 `json:"amount"`
 }
 
 func (q *Queries) CreateTransaction(ctx context.Context, arg CreateTransactionParams) (Transaction, error) {
