@@ -13,7 +13,7 @@ CREATE TABLE "transactions" (
   "transaction_id" bigserial PRIMARY KEY,
   "operation_type_id" bigint NOT NULL,
   "account_id" bigint NOT NULL,
-  "amount" bigint NOT NULL,
+  "amount" numeric(15,2) NOT NULL,
   "event_date" timestamptz NOT NULL DEFAULT (now())
 );
 
