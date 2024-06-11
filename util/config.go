@@ -29,6 +29,7 @@ func LoadConfig(path string) (config Config, err error) {
 		config.DBDriver = os.Getenv("DB_DRIVER")
 		config.DBSource = os.Getenv("DB_SOURCE")
 		config.ServerAddress = os.Getenv("SERVER_ADDRESS")
+		return config, nil
 	} else {
 		err = viper.Unmarshal(&config)
 	}
