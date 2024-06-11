@@ -44,6 +44,16 @@ jobs:
           sudo mv migrate /usr/bin/
           which migrate
 
+      - name: Set up environment variables
+        run: |
+          echo "DB_DRIVER=$DB_DRIVER" >> $GITHUB_ENV
+          echo "DB_SOURCE=$DB_SOURCE" >> $GITHUB_ENV
+          echo "SERVER_ADDRESS=$SERVER_ADDRESS" >> $GITHUB_ENV
+        env:
+          DB_DRIVER: ${{ secrets.DB_DRIVER }}
+          DB_SOURCE: ${{ secrets.DB_SOURCE }}
+          SERVER_ADDRESS: ${{ secrets.SERVER_ADDRESS }}
+
       - name: Run migrations
         run: make migrateup
 

@@ -1,6 +1,10 @@
 package util
 
-import "github.com/spf13/viper"
+import (
+	"os"
+
+	"github.com/spf13/viper"
+)
 
 // Config stores all app configurations
 // The values are read by viper from a config file or env variable
@@ -20,9 +24,12 @@ func LoadConfig(path string) (config Config, err error) {
 
 	err = viper.ReadInConfig()
 	if err != nil {
-		return
+		// If the config file is not found, fall back to environment variables
+		config.DBDriver = os.Getenv("DB_DRIVER")
+		config.DBSource = os.Getenv("DB_SOURCE")
+		config.ServerAddress = os.Getenv("SERVER_ADDRESS")
+	} else {
+		err = viper.Unmarshal(&config)
 	}
-
-	err = viper.Unmarshal(&config)
 	return
 }
