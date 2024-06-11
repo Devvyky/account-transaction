@@ -1,6 +1,7 @@
 package util
 
 import (
+	"log"
 	"os"
 
 	"github.com/spf13/viper"
@@ -24,7 +25,7 @@ func LoadConfig(path string) (config Config, err error) {
 
 	err = viper.ReadInConfig()
 	if err != nil {
-		// If the config file is not found, fall back to environment variables
+		log.Println("Config file not found, falling back to environment variables")
 		config.DBDriver = os.Getenv("DB_DRIVER")
 		config.DBSource = os.Getenv("DB_SOURCE")
 		config.ServerAddress = os.Getenv("SERVER_ADDRESS")
