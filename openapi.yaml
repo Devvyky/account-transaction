@@ -1,0 +1,189 @@
+openapi: 3.0.0
+info:
+  title: Account Transaction
+  version: 1.0.0
+servers:
+  - url: localhost://2000
+paths:
+  /accounts:
+    post:
+      tags:
+        - default
+      summary: Create Account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                document_number: "5364256325252"
+      responses:
+        "201":
+          description: Created
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Date:
+              schema:
+                type: string
+                example: Tue, 11 Jun 2024 12:42:22 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: "93"
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                account_id: 2
+                document_number: "5364256325252"
+                created_at: "2024-06-11T12:42:22.355739Z"
+  /accounts/{id}:
+    get:
+      tags:
+        - default
+      summary: Get Account
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: "1675"
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Date:
+              schema:
+                type: string
+                example: Tue, 11 Jun 2024 12:42:14 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: "92"
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                account_id: 1
+                document_number: "124525256446"
+                created_at: "2024-06-10T14:20:20.573953Z"
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Date:
+              schema:
+                type: string
+                example: Tue, 11 Jun 2024 16:21:39 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: "38"
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                error: "sql: no rows in result set"
+  /transactions:
+    post:
+      tags:
+        - default
+      summary: Create Transaction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                account_id: 1
+                operation_type_id: 2
+                amount: 5768.54
+      responses:
+        "201":
+          description: Created
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Date:
+              schema:
+                type: string
+                example: Tue, 11 Jun 2024 16:23:01 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: "119"
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                transaction_id: 10
+                operation_type_id: 2
+                account_id: 1
+                amount: -5768.54
+                event_date: "2024-06-11T16:23:01.100094Z"
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Date:
+              schema:
+                type: string
+                example: Tue, 11 Jun 2024 16:22:00 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: "29"
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: 404 - Account Not Found
+                  value:
+                    error: account not found
+                example-1:
+                  summary: 404 - Operation Type Not Found
+                  value:
+                    error: operation type not found
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Date:
+              schema:
+                type: string
+                example: Tue, 11 Jun 2024 13:29:44 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: "60"
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                error: "dial tcp [::1]:5432: connect: connection refused"

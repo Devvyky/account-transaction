@@ -4,9 +4,6 @@ postgres:
 createdb:
 	docker exec -it postgres createdb --username=postgres --owner=postgres account_transaction
 
-dropdb:
-	docker exec -it postgres dropdb account_transaction
-
 migrateup:
 	migrate -path db/migration -database "postgresql://postgres:postgres@localhost:5432/account_transaction?sslmode=disable" -verbose up
 
@@ -25,4 +22,4 @@ server:
 mock:
 	mockgen -package mockdb -destination db/mock/store.go github.com/devvyky/account-transaction/db/sqlc Store
 
-.PHONY: postgres createdb dropdb migrateup migratedown sqlc test server mock
+.PHONY: postgres createdb migrateup migratedown sqlc test server mock
