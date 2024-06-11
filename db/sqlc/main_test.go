@@ -18,7 +18,6 @@ func TestMain(m *testing.M) {
 	if err != nil {
 		log.Fatal("cannot load env config:", err)
 	}
-	log.Printf("Using DB config: %v", config)
 
 	testDB, err = sql.Open(config.DBDriver, config.DBSource)
 	if err != nil {
