@@ -10,8 +10,6 @@ This project is a Go-based account transaction api that connects to a PostgreSQL
 - [Running the Application](#running-the-application)
 - [Running Tests](#running-tests)
 - [Docker Setup](#docker-setup)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Prerequisites
 
